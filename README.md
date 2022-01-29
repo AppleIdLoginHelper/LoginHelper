@@ -168,3 +168,21 @@ Labels:
 ```
 
 大功告成！访问 https://domain.com/test 浏览效果吧！
+
+## 后续建议
+
+#### 关闭 debug 模式
+虽然使用的是最新的 `thinkphp` 版本，但是为了安全，仍建议关闭调试模式
+- 进入网站根目录
+- 编辑 `.env`
+- 将 `APP_DEBUG = true` 改成 `APP_DEBUG = false`
+
+#### 修改网站路径
+默认路径是 `test` ，为了确保只有你的用户知道这个地址，建议修改
+- 进入网站根目录
+- 进入 route 目录
+- 编辑 `app.php`
+- 将第一个 `test` 改成其他字符串
+```
+Route::get('/test', 'index/test');
+```
