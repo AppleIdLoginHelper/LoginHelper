@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>登录助手</title>
+  <meta name="viewport" content="width=device-width" charset="utf-8" />
+  <link rel="stylesheet" href="/static/css/mdui.min.css">
+  <script src="/static/js/mdui.min.js"></script>
+</head>
+
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink">
+  <div class="mdui-appbar mdui-appbar-fixed">
+    <div class="mdui-toolbar mdui-color-theme">
+      <p class="mdui-typo-title">登录助手</p>
+    </div>
+  </div>
+
+  <div class="mdui-container-fluid">
+    <div class="mdui-row">
+      <div class="mdui-col-md-11 mdui-col-sm-12">
+        <p style="color: #3F51B5; font-size: 34px">&nbsp;登录助手</p>
+
+        <div class="mdui-typo">
+          <div class="mdui-panel" mdui-panel>
+            <div class="mdui-panel-item">
+              <div class="mdui-panel-item-header">
+                <div class="mdui-panel-item-title">使用说明</div>
+                <i class="mdui-panel-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+              </div>
+              <div class="mdui-panel-item-body">
+                <ul class="mdui-typo">
+                  <li>打开 <code>App Store</code> ，点击右上角头像，下拉至最底部，点击 <mark>退出登录</mark></li>
+                  <li>输入提供的账户密码，点击 <mark>登录</mark></li>
+                  <li>在此查看你所登录的账户最新的验证码</li>
+                  <li>在 <mark>双重认证</mark> 文本下方输入框输入验证码</li>
+                  <li>点击右上角 <mark>完成</mark> ，点击底栏 <mark>放大镜图标</mark> ，在上方输入框输入软件名称下载</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-body mdui-table-fluid mdui-m-t-2">
+          <table class="mdui-table" style="border: none;">
+            <thead>
+              <tr>
+                <th>时间</th>
+                <th>账户</th>
+                <th>验证码</th>
+              </tr>
+            </thead>
+            <tbody>
+              {volist name="msg" id="content"}
+              <tr>
+                <td>{$content.receive_time}</td>
+                <td>{$content.correspondence}</td>
+                <td>{$content.snippet}</td>
+              </tr>
+              {/volist}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="mdui-m-t-2"></div>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
