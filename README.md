@@ -6,7 +6,7 @@
 所以说，要用魔法打败魔法
 
 ## 效果演示
-![https://github.com/AppleIdLoginHelper/AppleIdLoginHelper/blob/master/img/Snipaste_2022-01-30_00-56-09.png](https://github.com/AppleIdLoginHelper/AppleIdLoginHelper/blob/master/img/Snipaste_2022-01-30_00-56-09.png)
+![https://github.com/AppleIdLoginHelper/AppleIdLoginHelper/blob/master/img/Snipaste_2022-01-30_01-42-05.png](https://github.com/AppleIdLoginHelper/AppleIdLoginHelper/blob/master/img/Snipaste_2022-01-30_01-42-05.png)
 
 ## 流程简要说明
 - 注册或购买一个 `apple id` 账户（广告位招租）
