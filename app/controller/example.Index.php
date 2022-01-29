@@ -113,4 +113,9 @@ class Index extends BaseController
         View::assign('msg', $msg);
         return View::fetch('../app/view/index.html');
     }
+
+    public function callback()
+    {
+        return View::fetch('../app/view/callback.html');
+    }
 }

@@ -11,3 +11,4 @@
 use think\facade\Route;
 
 Route::get('/test', 'index/test');
+Route::get('/callback', 'index/callback');
