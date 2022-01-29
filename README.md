@@ -60,7 +60,7 @@ rm -rf .user.ini public/.user.ini
 ```
 拉取代码
 ```
-git clone https://github.com/AppleIdLoginHelper/AppleIdLoginHelper .
+git clone https://github.com/AppleIdLoginHelper/LoginHelper .
 ```
 安装 `composer` 命令（已安装可跳过）
 ```
