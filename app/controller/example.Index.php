@@ -50,7 +50,7 @@ class Index extends BaseController
 
         // https://developers.google.com/gmail/api/reference/rest/v1/users.messages/list
 
-        $list = $httpClient->get('https://gmail.googleapis.com/gmail/v1/users/'.$email_address.'/messages?q=Apple ID');
+        $list = $httpClient->get('https://gmail.googleapis.com/gmail/v1/users/'.$email_address.'/messages?maxResults=10&q=from: txt.voice.google.com Apple ID');
         $response = $list->getBody();
         $object = json_decode($response, true);
         
@@ -71,7 +71,8 @@ class Index extends BaseController
                 $body = $httpClient->get('https://gmail.googleapis.com/gmail/v1/users/'.$email_address.'/messages/'.$id);
                 $response = $body->getBody();
                 $object = json_decode($response, true);
-
+                preg_match_all('!\d+!', $object['snippet'], $matches);
+                
                 // process data
 
                 foreach ($object['payload']['headers'] as $item)
@@ -94,9 +95,8 @@ class Index extends BaseController
                 $record->receive_time       = $receive_time;
                 $record->original_recipient = $original_recipient;
                 $record->correspondence     = $email_correspondence[$original_recipient] ?? 'unknow';
-                $record->original_text      = $object['snippet'];
-                preg_match_all('!\d+!', $object['snippet'], $matches);
-                $record->snippet            = $matches['0']['0'];
+                $record->original_text      = $object['snippet'] ?? 'null';
+                $record->snippet            = $matches['0']['0'] ?? 'null';
                 $record->created_at         = time();
                 $record->save();
             }

@@ -5,3 +5,4 @@
 .env
 token.json
 credentials.json
+composer.lock
