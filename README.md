@@ -217,3 +217,6 @@ Route::get('/test', 'index/test');
 ```
 Route::get('/amdyes', 'index/test');
 ```
+
+#### 设置邮件转发
+参考官方教程 [https://support.google.com/mail/answer/10957](https://support.google.com/mail/answer/10957)
