@@ -99,7 +99,7 @@ class Index extends BaseController
                 $record->receive_time = $receive_time;
                 $record->final_recipient = $final_recipient ?? $email_address;
                 $record->original_recipient = $original_recipient;
-                $record->correspondence = $email_correspondence[$original_recipient];
+                $record->correspondence = $email_correspondence[$original_recipient] ?? 'unknow';
                 $record->snippet = substr($object['snippet'], 34, 6);
                 $record->created_at = time();
                 $record->save();
