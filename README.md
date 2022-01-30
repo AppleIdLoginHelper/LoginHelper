@@ -180,16 +180,20 @@ Labels:
 
 ## 故障排查
 
-#### 未定义数组索引: messages
-收件箱需要有包含关键词 `Apple Id` 的邮件。一般来说 `google voice` 收到的短信都会自动转发到 `gmail` 收件箱中
-
 #### mkdir(): permission denied
 进入网站根目录，执行
 ```
 chmod 755 -R *
 chown www -R *
 ```
-
+#### 未定义数组索引: messages
+收件箱需要有至少一封包含关键词 `Apple Id` 的邮件。一般来说 `google voice` 收到的短信都会自动转发到 `gmail` 收件箱中
+#### 我想要修改 google voice 账户登录密码
+可以，但修改完成后，需要重新执行授权。进入网站根目录，执行：
+```
+rm -rf token.json
+php quickstart.php
+```
 ## 后续建议
 
 #### 关闭 debug 模式
