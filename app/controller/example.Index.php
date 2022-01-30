@@ -82,11 +82,6 @@ class Index extends BaseController
                         $receive_time = date('Y-m-d H:i:s', strtotime($receive_time));
                     }
 
-                    // 最终收信人
-                    if ($item['name'] == 'X-Forwarded-To') {
-                        $final_recipient = $item['value'];
-                    }
-
                     // 原始收信人
                     if ($item['name'] == 'Delivered-To') {
                         $original_recipient = $item['value'];
@@ -95,19 +90,20 @@ class Index extends BaseController
                 
                 // save
                 $record = new MailContent;
-                $record->thread_id = $id;
-                $record->receive_time = $receive_time;
-                $record->final_recipient = $final_recipient ?? $email_address;
+                $record->thread_id          = $id;
+                $record->receive_time       = $receive_time;
                 $record->original_recipient = $original_recipient;
-                $record->correspondence = $email_correspondence[$original_recipient] ?? 'unknow';
-                $record->snippet = substr($object['snippet'], 34, 6);
-                $record->created_at = time();
+                $record->correspondence     = $email_correspondence[$original_recipient] ?? 'unknow';
+                $record->original_text      = $object['snippet'];
+                preg_match_all('!\d+!', $object['snippet'], $matches);
+                $record->snippet            = $matches['0']['0'];
+                $record->created_at         = time();
                 $record->save();
             }
         }
 
         $msg = MailContent::limit(10)
-        ->order('created_at', 'desc')
+        ->order('receive_time', 'desc')
         ->select();
         
         View::assign('msg', $msg);
