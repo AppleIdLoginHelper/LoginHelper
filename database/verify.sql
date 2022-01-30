@@ -26,9 +26,9 @@ CREATE TABLE `mail_content` (
   `id` int NOT NULL,
   `thread_id` text COLLATE utf8mb4_general_ci NOT NULL,
   `receive_time` text COLLATE utf8mb4_general_ci NOT NULL,
-  `final_recipient` text COLLATE utf8mb4_general_ci COMMENT '最终收信人',
   `original_recipient` text COLLATE utf8mb4_general_ci COMMENT '原始收信人',
   `correspondence` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `original_text` text COLLATE utf8mb4_general_ci,
   `snippet` text COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
