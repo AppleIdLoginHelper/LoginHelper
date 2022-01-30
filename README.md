@@ -74,7 +74,7 @@ mv composer.phar /usr/local/bin/composer
 ```
 安装依赖包
 ```
-composer update
+composer install
 ```
 授权
 ```
