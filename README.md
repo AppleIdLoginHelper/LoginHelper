@@ -105,10 +105,6 @@ DEBUG = true
 ```
 cd app/controller
 ```
-重命名文件
-```
-mv example.Index.php Index.php
-```
 编辑文件 `Index.php`
 ```
 // 开了 oauth2.0 的 gmail 账户 也是接收其他 gmail 转发邮件的收件箱
@@ -194,6 +190,9 @@ chown www -R *
 rm -rf token.json
 php quickstart.php
 ```
+#### mysql 1366 incorrect string value
+更新到最新 `commit` 即可
+
 ## 后续建议
 
 #### 关闭 debug 模式
