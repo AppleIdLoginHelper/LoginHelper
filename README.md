@@ -192,7 +192,13 @@ php quickstart.php
 ```
 #### mysql 1366 incorrect string value
 更新到最新 `commit` 即可
-
+#### 方法不存在：applcontrollerlIndex->index()
+访问网站的路径是 `/test`
+#### Token has been expired or revoked.
+```
+rm -rf token.json
+php quickstart.php
+```
 ## 后续建议
 
 #### 关闭 debug 模式
