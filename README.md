@@ -72,6 +72,11 @@ php composer-setup.php
 php -r "unlink('composer-setup.php');"
 mv composer.phar /usr/local/bin/composer
 ```
+禁用函数
+```
+proc_open putenv
+```
+
 安装依赖包
 ```
 composer install
