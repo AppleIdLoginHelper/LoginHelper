@@ -72,7 +72,7 @@ php composer-setup.php
 php -r "unlink('composer-setup.php');"
 mv composer.phar /usr/local/bin/composer
 ```
-禁用函数
+取消可能被禁用的以下函数
 ```
 proc_open putenv
 ```
