@@ -1,6 +1,7 @@
 <?php
 namespace app\controller;
 
+use think\helper\Str;
 use think\facade\Env;
 use think\facade\View;
 use app\BaseController;
@@ -91,15 +92,17 @@ class Index extends BaseController
                 }
                 
                 // save
-                $record = new MailContent;
-                $record->thread_id          = $id;
-                $record->receive_time       = $receive_time;
-                $record->original_recipient = $original_recipient;
-                $record->correspondence     = $email_correspondence[$original_recipient] ?? 'unknow';
-                $record->original_text      = $object['snippet'] ?? 'null';
-                $record->snippet            = $matches['0']['0'] ?? 'null';
-                $record->created_at         = time();
-                $record->save();
+                if (!Str::contains($object['snippet'], '@apple.com') || (Str::contains($object['snippet'], '@apple.com') && Env::get('OTHER.BLOCK_WEBSITE_LOGIN') == false)) {
+                    $record = new MailContent;
+                    $record->thread_id          = $id;
+                    $record->receive_time       = $receive_time;
+                    $record->original_recipient = $original_recipient;
+                    $record->correspondence     = $email_correspondence[$original_recipient] ?? 'unknow';
+                    $record->original_text      = $object['snippet'] ?? 'null';
+                    $record->snippet            = $matches['0']['0'] ?? 'null';
+                    $record->created_at         = time();
+                    $record->save();
+                }
             }
         }
 
