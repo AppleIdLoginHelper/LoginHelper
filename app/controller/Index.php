@@ -1,8 +1,9 @@
 <?php
 namespace app\controller;
 
-use app\BaseController;
+use think\facade\Env;
 use think\facade\View;
+use app\BaseController;
 use app\model\MailList;
 use app\model\MailContent;
 
@@ -107,6 +108,8 @@ class Index extends BaseController
         ->select();
         
         View::assign('msg', $msg);
+        View::assign('auth_refresh', Env::get('OTHER.AUTO_REFRESH'));
+        View::assign('refresh_interval', Env::get('OTHER.REFRESH_INTERVAL'));
         return View::fetch('../app/view/index.html');
     }
 

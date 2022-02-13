@@ -4,8 +4,16 @@
 <head>
   <title>登录助手</title>
   <meta name="viewport" content="width=device-width" charset="utf-8" />
+  {if $auth_refresh == true}
+  <meta http-equiv="refresh" content="{$refresh_interval}">
+  {/if}
   <link rel="stylesheet" href="/static/css/mdui.min.css">
   <script src="/static/js/mdui.min.js"></script>
+  <style type="text/css">
+    td {
+      white-space: nowrap;
+    }
+  </style>
 </head>
 
 <body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink">
@@ -19,7 +27,6 @@
     <div class="mdui-row">
       <div class="mdui-col-md-11 mdui-col-sm-12">
         <p style="color: #3F51B5; font-size: 34px">&nbsp;登录助手</p>
-
         <div class="mdui-typo">
           <div class="mdui-panel" mdui-panel>
             <div class="mdui-panel-item">
@@ -39,7 +46,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="card-body mdui-table-fluid mdui-m-t-2">
           <table class="mdui-table" style="border: none;">
             <thead>
@@ -61,9 +68,7 @@
           </table>
         </div>
 
-        <div class="mdui-m-t-2"></div>
-
-        <div class="mdui-typo">
+        <div class="mdui-typo mdui-m-t-2">
           <p align="center">
             <a href="https://github.com/AppleIdLoginHelper/LoginHelper" target="view_window">staff</a>
           </p>
