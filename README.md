@@ -17,6 +17,9 @@
 - 参考文档，将此项目部署完成，然后将网站链接发给用户
 - 用户登录时在网站获取验证码，便可完成登录
 
+## 注意事项
+只需要给一个谷歌账户开启 oauth2.0 。如果你买了持有不同 google voice 号码的谷歌账户，可以根据文末官方教程链接，设置邮件转发，转发到这个开启 oauth2.0 的谷歌账户
+
 ## 配置账户
 - 使用你的 `google voice` 账户登录 `GCP` 控制面板：[cloud.google.com](https://cloud.google.com)
 - 登录后，在左侧侧边栏找到 **api和服务**，点击子项 **oauth同意屏幕**
@@ -49,11 +52,20 @@
 #### 宝塔用户
 - 网站目录加上 `/public`
 - 伪静态选择 `thinkphp`
+- 确保这些函数没有被禁用：`putenv` `proc_open` `proc_get_status`
 
 #### lnmp.org 用户
 - 网站目录加上 `/public`
 - 将 `include rewrite/none.conf;` 改成 `include rewrite/thinkphp.conf;`
 
+还需要额外执行
+```
+sed -i 's/,putenv//g' /usr/local/php/etc/php.ini
+sed -i 's/,proc_open//g' /usr/local/php/etc/php.ini
+sed -i 's/,proc_get_status//g' /usr/local/php/etc/php.ini
+sed -i 's/^fastcgi_param PHP_ADMIN_VALUE/#fastcgi_param PHP_ADMIN_VALUE/g' /usr/local/nginx/conf/fastcgi.conf
+lnmp restart
+```
 进入网站根目录，然后移除防跨站
 ```
 chattr -i .user.ini
@@ -72,11 +84,6 @@ php composer-setup.php
 php -r "unlink('composer-setup.php');"
 mv composer.phar /usr/local/bin/composer
 ```
-取消可能被禁用的以下函数
-```
-proc_open putenv
-```
-
 安装依赖包
 ```
 composer install
@@ -90,7 +97,7 @@ chown www -R *
 ```
 cp .example.env .env
 ```
-编辑配置文件
+编辑配置文件，配置数据库
 ```
 [DATABASE]
 TYPE = mysql
@@ -102,6 +109,18 @@ HOSTPORT = 3306
 CHARSET = utf8
 DEBUG = true
 ```
+配置其他选项
+```
+[OTHER]
+AUTO_REFRESH = false
+REFRESH_INTERVAL = 5
+BLOCK_WEBSITE_LOGIN = false
+```
+
+- `AUTO_REFRESH` 网页自动刷新开关，开启需改为 `true`
+- `REFRESH_INTERVAL` 如果开启网页自动刷新，则每隔几秒刷新一次
+- `BLOCK_WEBSITE_LOGIN` 是否拦截官网登录验证码（appleid.apple.com），开启需改为 `true`
+
 使用 `phpmyadmin` 或使用命令 `mysql` 导入数据库结构 
 ```
 /database/verify.sql
@@ -139,11 +158,18 @@ $email_correspondence = [
     '<google_voice_2>' => '(app_b) <apple_id_b>',
 ];
 ```
-如果你只有一个 `apple id`
+如果你只有一个 `apple id` ，填写模板是
 ```
 $email_address = '<google_voice_1>';
 $email_correspondence = [
     '<google_voice_1>' => '(app_a) <apple_id_a>',
+];
+```
+填写示范
+```
+$email_address = 'appleid@gmail.com';
+$email_correspondence = [
+    'appleid@gmail.com' => '(netflix) apple@icloud.com',
 ];
 ```
 在网站目录下执行
@@ -204,6 +230,9 @@ php quickstart.php
 rm -rf token.json
 php quickstart.php
 ```
+#### 账户列显示 unknow
+`$email_correspondence` 配置存在问题，程序不知道邮箱验证码应该分配给哪一个 Apple ID
+
 ## 后续建议
 
 #### 关闭 debug 模式
