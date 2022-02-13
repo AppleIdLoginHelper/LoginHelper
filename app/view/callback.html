@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width" charset="utf-8" />
   <link rel="stylesheet" href="/static/css/mdui.min.css">
   <script src="/static/js/mdui.min.js"></script>
+  <script src="/static/js/clipboard.min.js"></script>
 </head>
 
 <body>
@@ -14,7 +15,7 @@
       <p class="mdui-typo-title">callback</p>
     </div>
   </div>
-  
+
   <div class="mdui-m-t-2"></div>
 
   <div class="mdui-container-fluid">
@@ -23,8 +24,14 @@
         <div class="mdui-card" style="transform: translateY(85%)">
           <div class="mdui-card-content mdui-typo">
             <p style="color: #3F51B5; font-size: 24px" align="center">callback</p>
+
             <p>复制下方的字符串，返回 <code>ssh</code> 软件，粘贴并按下回车</p>
-            <pre>{:input('code')}</pre>
+
+            <pre id="callback-code">{:input('code')}</pre>
+
+            <button class="callback mdui-btn mdui-btn-raised mdui-btn-dense mdui-color-indigo mdui-ripple"
+              data-clipboard-target="#callback-code">复制
+            </button>
 
             <p align="center">
               <a href="https://github.com/AppleIdLoginHelper/LoginHelper" target="view_window">staff</a>
@@ -35,5 +42,14 @@
     </div>
   </div>
 </body>
+
+<script>
+  let clipboard = new ClipboardJS('.callback')
+  clipboard.on('success', (e) => {
+    mdui.snackbar({
+      message: "复制成功"
+    })
+  });
+</script>
 
 </html>
