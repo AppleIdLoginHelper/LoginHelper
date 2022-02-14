@@ -120,6 +120,7 @@ BLOCK_WEBSITE_LOGIN = false
 - `AUTO_REFRESH` 网页自动刷新开关，开启需改为 `true`
 - `REFRESH_INTERVAL` 如果开启网页自动刷新，则每隔几秒刷新一次
 - `BLOCK_WEBSITE_LOGIN` 是否拦截官网登录验证码（appleid.apple.com），开启需改为 `true`
+- `BLOCK_ICLOUD_LOGIN` 是否拦截网页icloud登录验证码（icloud.com），开启需改为 `true`
 
 使用 `phpmyadmin` 或使用命令 `mysql` 导入数据库结构 
 ```
