@@ -115,6 +115,7 @@ DEBUG = true
 AUTO_REFRESH = false
 REFRESH_INTERVAL = 5
 BLOCK_WEBSITE_LOGIN = false
+BLOCK_ICLOUD_LOGIN = false
 ```
 
 - `AUTO_REFRESH` 网页自动刷新开关，开启需改为 `true`
