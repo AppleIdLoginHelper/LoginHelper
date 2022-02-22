@@ -228,6 +228,7 @@ php quickstart.php
 #### 方法不存在：app\controller\Index->index()
 访问网站的路径是 `/test`
 #### Token has been expired or revoked.
+在GCP控制台将应用发布成正式应用，token便可长期有效
 ```
 rm -rf token.json
 php quickstart.php
